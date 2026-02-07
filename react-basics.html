@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="react-basics.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+
+    <!-- What does babel do?
+     It is actually the external library for javascript codes...if you visit the url 
+     its a js compiler ..which translates other languages into js 
+      whats jsx?
+     jsx (javascript xml) generally is same as javascript n  lets the user to write html code lines dirrectly in the js ...  -->
+
+    <script type="text/babel">
+//We use div to display multiple html elements on the website ...As intead of functioning all the codes by ourselves
+      //we just give it to babel and it do the rest of the work,...This is how react helps us to create websites easily
+      const div = 
+      <div>
+        <button>hello</button>
+        <p> Get the fuck out of here {4+5} times</p>
+        </div> 
+
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(div);
+    </script>
+  </body>
+</html>

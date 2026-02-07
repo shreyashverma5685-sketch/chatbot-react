@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatbot</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="react-basics.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <script type="text/babel">
+
+      function ChatInput({chatMessages , setChatMessages }){
+        // State = save data that changes over time....so Were using the state here
+        const [inputText, setInputText] = React.useState('');
+        function saveInputText(event) {
+          setInputText(event.target.value);
+        }
+
+        function sendMessage(){
+          // console.log(inputText);
+          const newChatMessages= [
+            ...chatMessages,
+            {
+              message: inputText,
+              sender: 'user',
+              id : crypto.randomUUID()
+            }
+          ];
+
+          setChatMessages(newChatMessages);
+
+          const response = Chatbot.getResponse(inputText); //Using the response library from thr external url
+           setChatMessages([
+            ...newChatMessages,
+            {
+              message: response,
+              sender: 'robot',
+              id : crypto.randomUUID()
+            }
+          ]);
+
+          setInputText(''); //This helps us to vanish the the text we typed in the searchbox..
+        }
+
+
+
+        return(
+          <> {/*Div add krne se website p extra spaces create ho ja rhe the is liye
+            bs div likhna chor denge aur signs lga denge 
+            its called fragments*/}
+            <input 
+            placeholder = 'Send a message to Chatbot' 
+            size = '50'
+            // Its just like the onclick event ...We are just saving whatever text we're gonna write in the search box 
+            // upr function create kiye h ..usme bhi state use krenge 
+            onChange = {saveInputText}
+            value = {inputText} //Here we updated the html that to vanish the text on the searchbox
+            />
+            <button
+            onClick ={sendMessage} >Send</button>
+          </>
+        );
+      }
+
+      function ChatMessage ({message,sender}){ // its actually function ChatMessage (props){}
+        // const message = props.message;
+        // const sender = props.sender;
+        //const {message , sender } = props; //upr k dono ka shortcut ye hai ,..aur iska shortcut vo upr wala line h jo likha h 
+
+        if( sender === 'robot'){
+          return (
+          <div>
+            <img src="robot.png" width="50" />
+          {message} 
+          </div>
+          )
+        }
+
+        return(
+          <div>
+          {message}
+          <img src="user.png" width="50" /> 
+          </div>
+        ); 
+      }
+
+      // kAfi code bar bar rearranged huey h for better formating the code ...If u dont understand the process then just watch the state and event handler
+      function ChatMessages ({chatMessages}){
+
+        return(
+          <>
+          
+            {chatMessages.map((chatMessage) => {
+                  return(
+                    <ChatMessage 
+                      message = {chatMessage.message}
+                      sender = {chatMessage.sender}
+                      key = {chatMessage.id}
+                />
+              );
+            })}
+          </>
+        );
+      }
+
+      function App (){
+          
+          // Yha dhyan de bhndu ,... Js k through yha pe data save kiya ja rha h 
+            // Yha se data generate hoga html me through js 
+
+            //This is the shortcut for taking values out of an array
+          const [chatMessages , setChatMessages] = React.useState([{
+            message : 'hello chatbot',
+            sender : 'user',
+            id: 'id1'
+          },{
+            message : 'Hello! How can I help you',
+            sender : 'robot',
+            id: 'id2'
+          },{
+            message : 'Can you get me todays date',
+            sender : 'user',
+            id: 'id3'
+          },{
+            message : 'today is 28',
+            sender : 'robot',
+            id: 'id4'
+          }]);
+          // const [chatMessages , setChatMessages] = array ;  shortcuts p shortcuts upr wala usse bhi bda shotcut
+          // const chatMessages = array[0];
+          // const setChatMessages = array[1];
+
+        return(
+          <>
+        <ChatInput
+          chatMessages = {chatMessages}
+          setChatMessages = {setChatMessages}
+        
+        />   {/*its just {ChatInput()} ... better to use that way coz u'll think of onnly the html tags */} 
+       
+        < ChatMessages
+          chatMessages = {chatMessages}
+        />
+         </>
+        );
+      }
+      
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
