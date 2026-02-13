@@ -158,7 +158,7 @@
               };
 
               const loadingMessage = {
-                message: 'Typing...',
+                message: 'Thinking...',
                 sender: 'robot',
                 id: crypto.randomUUID(),
                 loading: true
@@ -225,7 +225,7 @@
             )}
             <div className="chat-message-text">
               {loading ? (
-                <span className="typing-text">Typing...</span>
+                <span className="typing-text">Thinking...</span>
               ) : (
                 message
               )}
