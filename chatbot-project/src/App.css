@@ -1,42 +1,108 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* So we just copied the same css file here to showcase the css on our new website */
+
+.app-container {
+  max-width: 600px;
+  margin: auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-left: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+
+.chat-messages-container {
+  flex-grow: 1;
+  padding: 20px 15px;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.chat-messages-container::-webkit-scrollbar {
+  display: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+
+.chat-message-user {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
-.card {
-  padding: 2em;
+.chat-message-robot {
+  display: flex;
+  align-items: flex-end;
 }
 
-.read-the-docs {
-  color: #888;
+
+.chat-message-profile {
+  width: 40px;
+  opacity: 0.85;
+}
+
+
+.chat-message-text {
+  background-color: #eeeeee;
+  padding: 12px 16px;
+  border-radius: 14px;
+  margin: 0 10px 18px;
+  max-width: 70%;
+  font-size: 14.5px;
+  line-height: 1.4;
+  color: #222;
+}
+
+
+.chat-message-user .chat-message-text {
+  background-color: #dcf8c6;
+}
+
+
+.typing-text {
+  color: #9aa0a6;
+  font-style: italic;
+  opacity: 0.75;
+}
+
+
+.Text-box-container {
+  display: flex;
+  padding: 12px;
+  border-top: 1px solid #e6e6e6;
+  background-color: #fafafa;
+}
+
+
+.Text-box {
+  flex-grow: 1;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #dcdcdc;
+  font-size: 14px;
+  outline: none;
+}
+
+.Text-box:focus {
+  border-color: #198754;
+}
+
+
+.send-button {
+  background-color: rgb(25, 135, 84);
+  color: white;
+  padding: 12px 18px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.send-button:hover {
+  opacity: 0.9;
+}
+
+.send-button:active {
+  transform: scale(0.97);
 }
