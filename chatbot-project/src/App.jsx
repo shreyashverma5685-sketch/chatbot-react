@@ -1,6 +1,8 @@
 import { useState ,useRef , useEffect } from 'react'
 import {Chatbot} from 'supersimpledev';
 import './App.css'
+import RobotProfileImage from './assets/robot.png';
+import UserProfileImage from './assets/robot.png';
 
 // Gnerally ,...We are taking the codes from the chatbot project itself...They all are here almost ..
 // But I've removes all the comment statements ,..U can still check it out in index.html
@@ -83,7 +85,7 @@ import './App.css'
             }>
             {sender === 'robot' && (
               <img className ="chat-message-profile"
-              src = "robot.png"/>
+              src = {RobotProfileImage} />
             )}
             <div className="chat-message-text">
               {loading ? (
@@ -96,7 +98,7 @@ import './App.css'
             
             {sender ==='user' && (
               <img className="chat-message-profile" 
-              src =" user.png"
+              src ={UserProfileImage}
               />
             )}
           </div>
