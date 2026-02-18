@@ -1,109 +1,15 @@
 import { useState ,useRef , useEffect } from 'react'
-import {Chatbot} from 'supersimpledev';
+import { ChatInput } from './components/ChatInput';
 import './App.css'
-import RobotProfileImage from './assets/robot.png';
-import UserProfileImage from './assets/robot.png';
+
 
 // Gnerally ,...We are taking the codes from the chatbot project itself...They all are here almost ..
 // But I've removes all the comment statements ,..U can still check it out in index.html
 
-  function ChatInput({chatMessages , setChatMessages }){
-        const [inputText, setInputText] = useState('');
-        function saveInputText(event) {
-          setInputText(event.target.value);
-        }
+// Abhi abhi sare codes likhe aur sare hote hi..sb alg alg files me shift kr diye gaey components wale folder me 
+ 
 
-        function handleKeyDown(event) {
-          if(event.key ==='Enter') {
-            sendMessage();
-          }
-        }
-
-         function sendMessage() {
-              if (!inputText.trim()) return;
-
-              const userMessage = {
-                message: inputText,
-                sender: 'user',
-                id: crypto.randomUUID()
-              };
-
-              const loadingMessage = {
-                message: 'Thinking...',
-                sender: 'robot',
-                id: crypto.randomUUID(),
-                loading: true
-              };
-
-              const newChatMessages = [...chatMessages, userMessage, loadingMessage];
-              setChatMessages(newChatMessages);
-              setInputText('');
-
-              setTimeout(() => {
-                const response = Chatbot.getResponse(inputText);
-
-                setChatMessages((prevMessages) =>
-                  prevMessages.map((msg) =>
-                    msg.loading
-                      ? {
-                          message: response,
-                          sender: 'robot',
-                          id: msg.id
-                        }
-                      : msg
-                  )
-                );
-              }, 2000);
-            }
-
-
-
-
-        return(
-          <div className= "Text-box-container"> 
-            <input 
-              className="Text-box"
-              placeholder = 'Send a message to Chatbot' 
-              onKeyDown={handleKeyDown} 
-              onChange = {saveInputText}
-              value = {inputText} 
-            />
-            <button className = "send-button"
-            onClick ={sendMessage} >Send</button>
-          </div>
-        );
-      }
-
-      function ChatMessage ({message,sender,loading }){  
-
-
-        return(
-          <div className ={
-            sender === 'user'
-               ? 'chat-message-user'
-               : 'chat-message-robot'
-            }>
-            {sender === 'robot' && (
-              <img className ="chat-message-profile"
-              src = {RobotProfileImage} />
-            )}
-            <div className="chat-message-text">
-              {loading ? (
-                <span className="typing-text">Thinking...</span>
-              ) : (
-                message
-              )}
-            </div>
-
-            
-            {sender ==='user' && (
-              <img className="chat-message-profile" 
-              src ={UserProfileImage}
-              />
-            )}
-          </div>
-        );
-      }
+    
 
     
       function ChatMessages ({chatMessages}){
