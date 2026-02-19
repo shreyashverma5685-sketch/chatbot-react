@@ -1,5 +1,5 @@
-import RobotProfileImage from './assets/robot.png';
-import UserProfileImage from './assets/robot.png';
+import RobotProfileImage from '../assets/robot.png';
+import UserProfileImage from '../assets/robot.png';
   
 export function ChatMessage ({message,sender,loading }){  
 
